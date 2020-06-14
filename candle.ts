@@ -25,6 +25,46 @@ class Candle {
         return this.lit;
     }
 
+    /* blow this candle */
+    blow (parentCandle?: Candle):CandleConnection {
+
+        /* check I'm lit */
+        if (!this.lit) {
+            console.error("Your are trying to blow a not lit candle %o", this);
+            return [];
+        }
+
+        /* if I'm first candle just put it OFF and return my connections */
+        if (!parentCandle)
+        {
+            this.lit = false;
+            return this.connections;
+        }
+        else {
+            /* if I'm a middle candle */
+
+            /* my parent should not be lit */
+            if (parentCandle.lit) {
+                console.error("Your are trying to blow a me %o through a lit parent %o", this, parentCandle);
+                return [];
+            }
+
+            /* check I'm connected with my parent */
+            if (!(parentCandle.id in this.connections)) {
+                console.error("%o I'm not connected with my parent %o", this, parentCandle);
+                return [];
+            }
+
+            /* 
+             * if I'm connect with my parent, clear all my parents connections, OFF me and return 
+             * my connections 
+             */
+            this.lit = false;
+            parentCandle.disconnectAll ();
+            return this.connections;
+        }
+    }
+
     /* check whether candle is lit or not.*/
     isLit ():boolean {
         return this.lit;
@@ -55,6 +95,31 @@ class Candle {
         }
     }
 
+    /* returns candle state as a string */
+    disconnect (candle: Candle, connectBothWays:boolean=true):boolean {
+
+        /* if the candle does not exist already in connections add it */
+        if (!this.connections.hasOwnProperty(candle.id))
+        {
+            console.log("Connections between candle [%d]->[%d] does NOT exists", this.id, candle.id);
+            return false;
+        }
+        else    
+        {
+            console.log("Disconnecting[%d]->[%d]", this.id, candle.id);
+            delete this.connections[candle.id];
+            if (connectBothWays)
+                return candle.disconnect(this, false);
+        }
+    }
+
+     /* returns candle state as a string */
+     disconnectAll () {
+        for (var key in this.connections) {
+            this.disconnect(connections[key]);
+        }
+    }
+
     printConnections () {
         //console.log(this.connections);
         for (var key in this.connections) {
@@ -62,19 +127,19 @@ class Candle {
         }
     }
 }
-
+let connections: CandleConnection;
 let c1 = new Candle ("Candle 1", 1);
-let c2 = new Candle ("Candle 2", 2, false);
+let c2 = new Candle ("Candle 2", 2);
 let c3 = new Candle ("Candle 3", 3);
-
-c1.isLitAsString();
-c2.isLitAsString();
-c2.light();
-c2.isLitAsString();
+let c4 = new Candle ("Candle 4", 4);
 
 c1.connect(c2);
-c1.connect(c3);
+c2.connect(c3);
+c2.connect(c4);
+c3.connect(c4);
 
-c1.printConnections ();
-c2.printConnections ();
-c3.printConnections ();
+connections = c1.blow ();
+console.log(connections);
+
+connections = c2.blow (c1);
+console.log(connections);
