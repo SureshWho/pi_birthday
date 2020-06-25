@@ -257,7 +257,6 @@ class Cake {
 
         /* set first candle */
         this.candles[startCandle].start ();
-
     }
 
     removeCandles (construction: CandlePlacements) {

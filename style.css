@@ -1,20 +1,27 @@
-html, body{
+body {
   margin: 0;
   padding: 0;
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-.point{
-  width: 15px;
-  height: 15px;
-  background: #f8f6f6;
-  position: absolute;
-  z-index: 10;  
+.body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  transition: background-color .1s;
+  stroke: rgba(243, 137, 8, 0.5);
 }
 
-.line {
-  width: 100%;
-  color: rgb(230, 217, 217);
-  height: 1px;
+.title {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
 #svg{
@@ -25,81 +32,156 @@ html, body{
     height: 100vh;
   }
 
-body {
-  font-family: 'Niramit', sans-serif;
-  background-color: #d6d6cb;
-
-}
-p {
-  margin-left: 20px;
-  margin-right:20px;
-  position: relative;
-  z-index: 11;
-  background: rgba(204, 199, 199, 0.55)
-}
-
-#one{
-  top: 80px;
-  left: 50px;
-}
-
-#two{
-  top: 290px;
-  right: 50px;
-}
-#three {
-  top: 390px;
-  right: 150px;
-}
-#four {
-  top: 590px;
-  left: 20px;
-}
-.btn {
-  display: inline-block;
-  background: #4e7c80;
-  color: white;
-  padding: 10px 15px;
-  margin-left: 5px;
-  cursor: pointer;
-  position: relative;
-  z-index: 11;
-  line-height: 1em;
-  &:hover {
-    background: darken(#4e7c80, 10%);
-  }
-}
-
 .circle {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 2px solid darkgrey;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgb(255, 0, 0);
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
+  background: linear-gradient(40deg, #FF0080,#FF8C00 70%);
 }
 
-div {
-  box-sizing: border-box;
-}  
+.circle:hover { 
+  transform: scale(1.2); 
+  cursor: pointer;
+}
 
-div#main {
+.title {
+  text-align: center;
+  padding-bottom: 2px;
+  width: 100vw;
+}
+
+.table {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.cake {
+  position: relative;
+  width: 38em;
+  height: 38em;
+    /*2.8em = 2em*1.4 (2em = half the width of a link with img, 1.4 = sqrt(2))*/
+  margin: 0 auto;
+  border-radius: 50%;
+  /*box-shadow: 0 4px 20px rgba(0,0,0,.1);*/
+}
+
+/* Middle */
+.settings {
   position: absolute;
-  left: 33%;
-  top: 20%;
+  right: 8em;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100px;
+  transform: translateY(5%);
+}
+p { 
+  font-size: 90%;
 }
 
-.dark-mode {
-  background-color: black;
+label, .toggle {
+  height: 0.5rem;
+  border-radius: 100px;
+}
+
+label {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+  position: relative;
+  margin: 1.8rem 0 0 0; 
+  cursor: pointer;
+}
+
+.toggle {
+  position: absolute;
+  width: 50%;
+  background-color: #fff;
+  box-shadow: 0 2px 15px rgba(0,0,0,.15);
+  transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.names {
+  font-size: 90%;
+  font-weight: bolder;
+  width: 90%;
+  margin-left: 2.5%;
+  margin-top: .5%;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.dark {
+  opacity: .5;
+}
+
+/* The container */
+.container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+
+/* -------- Switch Styles ------------*/
+[type="checkbox"] {
+  display: none;
+}
+
+input:checked + .game #mode_id{
+  transform: translateX(100%);
+  background-color:rgb(33, 34, 38);
+} 
+
+input:checked + .game  #mode_dark {
+  opacity: 1;
+}
+
+input:checked + .game #mode_light{
+  opacity: .5;
+}
+
+
+input:checked + .container .toggle{
+  transform: translateX(100%);
+  background-color:rgb(33, 34, 38);
+} 
+
+input:checked + .container  .dark{
+  opacity: 1;
+}
+
+input:checked + .container .light{
+  opacity: .5;
+}
+
+/* App */
+input:checked + .game .body {
+  background-color:  rgb(53, 54, 58);
   color: white;
-  stroke:rgb(231, 222, 222);
+  stroke: #0000FF;
 }
 
-.dark,
-.dark * {
-    background-color: #222;
-    color: #e6e6e6;
-    border-color: #855656;
-}
+
+[type="checkbox"]:checked + .game .circle{
+  border: 2px solid #0000FF;
+  background: linear-gradient(40deg, #8983F7, #A3DAFB 70%);
 }
