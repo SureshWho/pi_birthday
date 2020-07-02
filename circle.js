@@ -29,6 +29,7 @@ var Position = {
       //m.id = idd;
    
       for (var i = 0; i < n; i++) {
+        //<i class='fas fa-burn' style='font-size:48px;color:red'></i>
         var c = document.createElement('div');
         c.className = cls;
         c.id = "pair"+String(i+1);

@@ -22,7 +22,7 @@ interface CandleConnectionDictionary {
 class Candle {
     lit:            boolean;
     connections:    CandleConnectionDictionary;
-    ready:          boolean;
+    private ready:          boolean;
 
     /* constructor default state of a candle is lit(ON). */
     constructor (public label: string, public id: number, light: boolean=true) {
@@ -271,3 +271,17 @@ class Cake {
 }
 
 var cake = new Cake (0, Blow, g_candlePlacements, 15);
+
+function darkMode () {
+    console.log("Dark Mode");
+
+    /* get all .body */
+    const bodys = document.getElementsByClassName('body');
+
+    for (let i = 0; i < bodys.length; i++) {
+        const body = bodys[i] as HTMLElement;
+        body.style.backgroundColor = "#283142";
+        body.style.color = "#eceff1";
+        body.style.stroke = "#0000FF";
+    }
+}

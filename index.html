@@ -4,48 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Birthday puzzle</title>
+  <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet'>
   <link rel="stylesheet" href="style.css">
   <style>
     @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
   </style>
 </head>
 <body>
-  <input type="checkbox" checked="checked" id="switch">
+  
   <div class="game">
     <div class="body">
       <svg id="svg">
         <line id="line" class="line original"/>
       </svg>
       <h1 class=title>∏ birthday puzzle</h1>
-      <div class="table">
-        <!-- Cake main round -->
-        <div class="cake" id="cake1">
+         <!-- Cake main round -->
+          <div class="cake" id="cake1">
+            <script src="circle.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+            <script src="svg.js"></script>
+            <script src="candle.js"></script>
+          </div>
+        <!-- Bottom --> 
+        <button class="settings-button" onclick="openForm()">Settings</button>
     
-          <script src="circle.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-          <script src="svg.js"></script>
-          <script src="candle.js"></script>
-    
+        <div class="form-popup" id="myForm">
+          <form action="/action_page.php" class="form-container">
+            <h1>Settings</h1>
+        
+            <p>Choose between dark and light mode</p>
+            <input type="checkbox" id="modeSettings" onclick="darkMode ()">
+            <label for="modeSettings">Dark mode</label>
 
+            <p>In some culture, lighting a candle is considered more auspicious than blowing.</p>
+            <input type="checkbox" id="lightingMode" onclick="myFunction()" >
+            <label for="lightingMode">Light</label>
+            
+        
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          </form>
         </div>
-        <div class="settings">
-          <label for="switch" class="container">
-            <div class="toggle" id="mode_id"></div>
-            <div class="names">
-              <p class="light" id="mode_light">Light</p>
-              <p class="dark"  id="mode_dark">Dark</p>
-            </div>
-          </label>
-          <input type="checkbox" id="lighting">
-          <label for="lighting" class="container">
-            <div class="toggle"></div>
-            <div class="names">
-              <p class="light">Blow</p>
-              <p class="dark">Light</p>
-            </div>
-          </label>
+        
+        <script>
+        function openForm() {
+          document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+        }
+
+        function myFunction() {
+          var checkBox = document.getElementById("myCheck");
+          var text = document.getElementById("text");
+          if (checkBox.checked == true){
+            text.style.display = "block";
+          } else {
+            text.style.display = "none";
+          }
+      }
+
+        </script>
+        <div class="skip">
         </div>
-      </div>
     </body>
   </div>
     <!-- Settings panel -->

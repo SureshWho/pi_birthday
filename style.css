@@ -4,11 +4,10 @@ body {
   font-family: 'Rubik', -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+    "Droid Sans", "Helvetica Neue", "Arvo", sans-serif;
 }
 
 .body {
-  position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -20,8 +19,9 @@ body {
 
 .title {
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   text-align: center;
+  font-family: 'Ubuntu';font-size: 30px;
 }
 
 #svg{
@@ -62,10 +62,9 @@ body {
 
 .cake {
   position: relative;
+  margin: 0 auto;
   width: 38em;
   height: 38em;
-    /*2.8em = 2em*1.4 (2em = half the width of a link with img, 1.4 = sqrt(2))*/
-  margin: 0 auto;
   border-radius: 50%;
   /*box-shadow: 0 4px 20px rgba(0,0,0,.1);*/
 }
@@ -92,10 +91,9 @@ label, .toggle {
 
 label {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 100px;
   position: relative;
-  margin: 1.8rem 0 0 0; 
+  margin: 0rem 0 0 0; 
   cursor: pointer;
 }
 
@@ -140,11 +138,93 @@ label {
   width: 0;
 }
 
+/* Bottom */
+.skip {
+  margin: 1em 45vw;
+  padding: 0 0;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(201, 187, 170, 1);
+}
 
-/* -------- Switch Styles ------------*/
+/* XXX */
+/* Button used to open the contact form - fixed at the bottom of the page */
+.settings-button {
+  background-color: #555;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 65px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  font-family: 'Helvetica';font-size: 15px;
+  
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=checked] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background-color: white;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=checked]:focus {
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .settings-button:hover {
+  opacity: 1;
+}
+
+
+/* -------- Switch Styles ------------
 [type="checkbox"] {
   display: none;
 }
+
 
 input:checked + .game #mode_id{
   transform: translateX(100%);
@@ -172,6 +252,7 @@ input:checked + .container  .dark{
 input:checked + .container .light{
   opacity: .5;
 }
+*/
 
 /* App */
 input:checked + .game .body {
